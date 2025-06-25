@@ -1,0 +1,19 @@
+String validarCampos()
+    if (emailController.text.isEmpty) {
+      infoGeneric = "- O campo Email obrigatório.";
+    }
+    if (senhaController.text.isEmpty) {
+      infoGeneric = "- O campo Senha obrigatório.";
+    }
+    if (cpfController.text.isEmpty) {
+      infoGeneric = "- O campo CPF não deve estar vazio";
+    }
+    if (emailController.text.trim() == "@") {
+      infoGeneric = "- O campo email não pode conter apenas o \"@\".\n";
+    }
+    if (!RegExp(r'^[a-zA-Z0-9]+(@[a-zA-Z])').hasMatch(emailController.text)) {
+      infoGeneric = "- O campo email deve conter \"@\".\n";
+    } else {
+      infoGeneric = "Cadastrado com sucesso";
+    }
+    return infoGeneric;

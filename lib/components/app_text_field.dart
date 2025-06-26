@@ -5,9 +5,8 @@ class AppTextField extends StatelessWidget {
   final Icon icone;
   final String msng;
   final TextInputType? tipoDeEntrada;
-  final TextEditingController? controlador;
   final MaskTextInputFormatter? fieldFormater;
-  final Function(String)? onChanged;
+  final void Function(String)? onChanged;
   final String? errorText;
 
   const AppTextField({
@@ -15,7 +14,6 @@ class AppTextField extends StatelessWidget {
     required this.icone,
     required this.msng,
     this.tipoDeEntrada,
-    this.controlador,
     this.fieldFormater,
     this.onChanged,
     this.errorText,
@@ -24,7 +22,6 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controlador,
       keyboardType: tipoDeEntrada,
       onChanged: onChanged,
       inputFormatters: fieldFormater != null ? [fieldFormater!] : null,

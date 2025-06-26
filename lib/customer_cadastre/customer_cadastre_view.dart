@@ -65,21 +65,27 @@ class _CustomerCadastreViewState extends State<CustomerCadastreView> {
                     children: [
                       AppTextField(
                         icone: Icon(Icons.mail),
-                        errorText: viewModel.erroEmail,
-                        onChanged: (value) => viewModel.emailErrorText(value),
+                        errorText: viewModel.emailErrorText,
+                        onChanged: (value) {
+                          viewModel.onEmailChanged(value);
+                        },
                         msng: "Email",
                       ),
 
                       AppTextFieldPassword(
                         iconeInicial: Icon(Icons.lock),
-                        erroText: viewModel.erroSenha,
-                        onChanged: (value) => viewModel.senhaErrorText(value),
+                        erroText: viewModel.senhaErroText,
+                        onChanged: (value) {
+                          viewModel.onSenhaChanged(value);
+                        },
                         nomeDoCampo: "Senha",
                       ),
 
                       AppTextField(
-                        errorText: viewModel.erroNome,
-                        onChanged: (value) => viewModel.nomeErrorText(value),
+                        errorText: viewModel.nomeErroText,
+                        onChanged: (value) {
+                          viewModel.onNomeChanged(value);
+                        },
                         icone: Icon(Icons.account_circle_sharp),
                         msng: "Nome",
                       ),
@@ -93,28 +99,29 @@ class _CustomerCadastreViewState extends State<CustomerCadastreView> {
                         tipoDeEntrada: TextInputType.number,
                         icone: Icon(Icons.phone),
                       ),
+
                       AppTextField(
                         icone: Icon(Icons.insert_drive_file),
-                        errorText: viewModel.erroCPF,
-                        onChanged: (value) => viewModel.cpfErrorText(value),
+                        errorText: viewModel.cpfErroText,
+                        onChanged: (value) => viewModel.onCpfChanged(value),
                         fieldFormater: MaskTextInputFormatter(
                           mask: "###.###.###-##",
                           filter: {"#": RegExp(r"[0-9]")},
                         ),
                         msng: "CPF",
                       ),
+
                       AppButton(
                         textButton: "Cadastrar usuário",
                         colorButton: Colors.green,
                         funcao: () {
-                          setState(() {
-                            if (viewModel.didTapConfirmUser()) {
-                              showDialog(
-                                context: context,
-                                builder: retronoDialog,
-                              );
-                            } else {}
-                          });
+                          setState(() {});
+                          if (viewModel.didTapConfirmUser()) {
+                            showDialog(
+                              context: context,
+                              builder: retronoDialog,
+                            );
+                          }
                         },
                       ),
                     ],
